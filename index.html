@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Objectif : épargne à ton rythme</title>
+<style>
+:root{--bg:#f6f4ee;--c:#fff;--t:#1d2433;--m:#6b7280;--a:#0f8a5f;--g:#c98a00;--r:#d6453d;--b:#2f6fdb;--l:#e4e0d4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1320;--c:#18202f;--t:#eef1f6;--m:#98a2b3;--a:#2fcf94;--g:#f0b429;--r:#ff6b61;--b:#6ea1ff;--l:#2a3448;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0e1320;--c:#18202f;--t:#eef1f6;--m:#98a2b3;--a:#2fcf94;--g:#f0b429;--r:#ff6b61;--b:#6ea1ff;--l:#2a3448;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0 auto;max-width:720px;padding:10px 12px 40px;background:var(--bg);color:var(--t);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);display:flex;gap:4px;padding:6px 0;overflow-x:auto}
+nav button,.btn,.chip{border:1px solid var(--l);background:var(--c);color:var(--t);border-radius:999px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
+nav button.on,.btn.p,.chip.on{background:var(--a);border-color:var(--a);color:#fff}
+.card{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:14px;margin:10px 0}
+h1{font-size:19px;margin:6px 0}h3{margin:0 0 8px;font-size:15px}.sub,.s{color:var(--m);font-size:13px}
+.big{font-size:30px;font-weight:800;letter-spacing:-.5px}
+.bar{height:14px;border-radius:9px;background:var(--l);overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--g));border-radius:9px}
+.kp{display:grid;grid-template-columns:1fr 1fr;gap:8px}.kp div{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:10px}.kp b{display:block;font-size:17px}
+.ok{color:var(--a)}.ko{color:var(--r)}.coach{margin:6px 0 0;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mc{border:2px solid var(--l);background:var(--c);color:var(--t);border-radius:12px;padding:6px 2px;font:inherit;font-size:11px;cursor:pointer;text-align:center;line-height:1.25}
+.mc b{display:block;font-size:12px}.mc em{display:block;font-style:normal;font-weight:700}
+.mc.skip{background:repeating-linear-gradient(45deg,var(--l),var(--l) 4px,transparent 4px,transparent 8px)}.mc.x2{border-color:var(--g)}.mc.good{border-color:var(--a)}.mc.bad{border-color:var(--r)}.mc.now{outline:2px solid var(--b)}
+label{display:block;font-size:13px;color:var(--m);margin:8px 0 2px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--l);border-radius:10px;background:var(--bg);color:var(--t);font:inherit}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.row>*{flex:1}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sec{display:none}.sec.on{display:block}
+.bd{display:inline-block;padding:6px 10px;margin:3px;border-radius:12px;border:1px solid var(--l);font-size:13px}.bd.on{background:var(--g);color:#1d2433;border-color:var(--g);font-weight:700}
+.tr{display:grid;grid-template-columns:78px 1fr 1fr;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--l);font-size:13px}
+.pb{height:8px;background:var(--l);border-radius:5px;overflow:hidden;grid-column:1/-1}.pb i{display:block;height:100%;background:var(--a)}
+.li{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--l);font-size:14px}
+.li button{border:0;background:none;color:var(--r);cursor:pointer;font-size:16px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--t);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:50;opacity:0;transition:opacity .3s;max-width:90vw;text-align:center}#toast.on{opacity:1}
+.cf{position:fixed;top:-2rem;font-size:1.6rem;animation:fall 1.8s ease-in forwards;z-index:99;pointer-events:none}@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.cf{display:none}}
+svg{width:100%;height:auto}#pj{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}.pr{width:100%;background:none;border:0;border-bottom:1px solid var(--l);color:inherit;font:inherit;text-align:left;cursor:pointer}
+#lock{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);align-items:center;justify-content:center;text-align:center;padding:env(safe-area-inset-top,0px) 12px env(safe-area-inset-bottom,0px)}.lk #lock{display:flex}.lk body>*:not(#lock){visibility:hidden}
+#dots{display:flex;gap:12px;justify-content:center;height:18px;margin:14px 0}#dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--a)}#dots i.f{background:var(--a)}
+#pad{display:grid;grid-template-columns:repeat(3,72px);gap:12px;margin:14px auto;justify-content:center}.pk{height:72px;border-radius:50%;font-size:24px;border:1px solid var(--l);background:var(--c);color:var(--t);cursor:pointer}
+</style></head><body><script>try{if(localStorage.getItem("epargne_sec"))document.documentElement.classList.add("lk")}catch(e){}</script>
+<h1>💰 Objectif : épargne à ton rythme <button class="chip" id="th" style="float:right;padding:4px 10px">◐</button></h1>
+<nav id="nav"><button data-tab="home" class="on">Accueil</button><button data-tab="plan">Plan</button><button data-tab="tx">Saisie</button><button data-tab="st">Stats</button><button data-tab="set">Réglages</button></nav>
+<div id="pj"></div><div class="card" id="np" hidden><h3>Nouveau projet</h3><div class="row" id="tpl"></div></div>
+<section class="sec on" id="home"></section>
+<section class="sec" id="plan"></section>
+<section class="sec" id="tx">
+<div class="card"><h3>Ajouter un mouvement <span id="pn" class="s"></span></h3>
+<div class="row" id="tt"><button class="chip on" data-t="d">➕ Épargne</button><button class="chip" data-t="r">➖ Retrait</button><button class="chip" data-t="x">🧾 Dépense</button></div>
+<label>Montant (FCFA)</label><input id="am" class="num" type="text" inputmode="numeric" placeholder="ex. 150 000">
+<div class="row" id="qk"><button class="chip" data-q="10000">+10k</button><button class="chip" data-q="50000">+50k</button><button class="chip" data-q="100000">+100k</button><button class="chip" data-q="500000">+500k</button></div>
+<div class="two"><div><label>Catégorie</label><select id="ct"></select></div><div><label>Date</label><input id="dt" type="date"></div></div>
+<label>Note (facultatif)</label><input id="nt" placeholder="ex. prime de mars">
+<div class="row"><button class="btn p" id="add">Enregistrer</button></div></div>
+<div class="card"><h3>Historique</h3><div id="hist"></div></div></section>
+<section class="sec" id="st"></section>
+<section class="sec" id="set"></section>
+<p class="s">Simulation indicative, pas un conseil financier. Le rendement n’est pas garanti. Données enregistrées sur cet appareil uniquement : pense à la sauvegarde (Réglages).</p>
+<div id="toast"></div>
+<div id="lock"><div><div style="font-size:42px">🔒</div><h2 style="margin:6px 0">Objectif : épargne à ton rythme</h2><div class="s">Saisis ton PIN</div><div id="dots"></div><div id="lmsg" class="s" style="min-height:20px"></div><div id="pad"></div><div class="row" style="justify-content:center"><button class="chip" id="lbio" hidden>👆 Empreinte digitale</button><button class="chip" id="lfg">PIN oublié ?</button></div></div></div>
+<script>
+const $=s=>document.querySelector(s),KEY='epargne100m_v2',OLD='epargne100m',MN=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+const def={ic:'💰',name:'Mon objectif 100 M',goal:1e8,start:'2026-12',n:60,rate:5,step:0,manual:null,init:0,income:0,mult:{},tx:[]};
+const mkP=o=>Object.assign(JSON.parse(JSON.stringify(def)),{id:'p'+Date.now()+Math.random().toString(36).slice(2,5)},o||{});
+function norm(o){let d;if(o&&Array.isArray(o.ps)&&o.ps.length){d=o;d.ps=d.ps.map(p=>mkP(p))}else if(o&&typeof o.goal=='number')d={ps:[mkP(o)],income:o.income,lb:o.lb};else d={ps:[mkP()]};d.income=+d.income||0;d.lb=d.lb||0;if(!d.ps.some(p=>p.id==d.cur))d.cur=d.ps[0].id;return d}
+const TPL={car:['🚗','Voiture',6e6,18],trip:['✈️','Vacances',1.5e6,12],home:['🏠','Maison / terrain',3e7,60],wed:['💍','Mariage',5e6,24],edu:['🎓','Études',3e6,24],eme:['🛟','Fonds d’urgence',3e6,12],oth:['🎯','Autre projet',1e6,12]};
+let DB=norm((()=>{try{return JSON.parse(localStorage.getItem(KEY)||localStorage.getItem(OLD)||'null')}catch(e){return null}})()),S=DB.ps.find(p=>p.id==DB.cur),P='m',TT='d',C;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
+const F=n=>Math.round(n).toLocaleString('fr-FR')+' F',K=n=>{n=Math.round(n);return Math.abs(n)>=1e6?(n/1e6).toFixed(2).replace(/\.?0+$/,'').replace('.',',')+' M':Math.abs(n)>=1e3?Math.round(n/1e3)+' k':n+''};
+const num=v=>+String(v).replace(/\D/g,'')||0,fmtI=n=>n?String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' '):'';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CAT={d:['Épargne régulière','Prime / bonus','Revenu extra','Cadeau / remboursement'],r:['Urgence réelle','Projet prévu','Craquage (à éviter)'],x:['Loyer & charges','Alimentation','Transport','Famille & tontine','Fêtes & religion','Santé','Loisirs','Impulsion','Autre']};
+const TIPS=['Paie-toi d’abord : programme le virement d’épargne le jour de la paie, avant toute dépense.','Règle des 72 h : tout achat non prévu attend 3 jours. Beaucoup d’envies disparaissent.','Chaque augmentation de revenu : au moins la moitié part directement dans l’épargne.','Sépare ton épargne de ton compte courant, idéalement dans une autre banque ou un compte à terme.','Un fonds d’urgence de 3 à 6 mois de dépenses évite de casser le plan au premier imprévu.','Attaque les 3 plus gros postes de dépense, pas les petits cafés.','Un mois sauté se rattrape : planifie-le à l’avance (Tabaski, rentrée) plutôt que le subir.','Automatise, puis oublie. La discipline vaut moins que le système.','Rends l’épargne visible : chaque palier atteint mérite une petite récompense.','Un retrait « craquage » coûte plus que son montant : il retarde la date finale.'];
+function calc(s=S){
+ const [y,m]=s.start.split('-').map(Number),n=s.n,r=Math.pow(1+s.rate/100,1/12)-1,k0=y+'-'+String(m).padStart(2,'0');
+ const M=[...Array(n)].map((_,i)=>{const d=new Date(y,m-1+i,1),key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');return{i,y:d.getFullYear(),m:d.getMonth(),key,w:(s.mult[key]??1)*Math.pow(1+s.step/100,i/12|0),dp:0,rt:0,ex:0}});
+ let sum=0;M.forEach(o=>sum+=o.w*Math.pow(1+r,n-1-o.i));
+ const auto=sum>0?Math.max(0,Math.ceil((s.goal-s.init*Math.pow(1+r,n))/sum/1000)*1000):0,base=s.manual>0?s.manual:auto;
+ let pre=0;const ex={};
+ s.tx.forEach(t=>{const k=t.d.slice(0,7),o=M.find(x=>x.key===k);if(t.t==='x'){ex[t.c]=(ex[t.c]||0)+t.a;if(o)o.ex+=t.a;return}const v=t.t==='d'?t.a:-t.a;if(!o){if(k<k0)pre+=v}else if(t.t==='d')o.dp+=t.a;else o.rt+=t.a});
+ const now=new Date(),cur=Math.min(n-1,now.getFullYear()*12+now.getMonth()-(y*12+m-1));
+ let pb=s.init,ab=s.init+pre,dep=0;
+ M.forEach(o=>{o.dep=base*o.w;o.net=o.dp-o.rt;dep+=o.dep;pb=pb*(1+r)+o.dep;o.pb=pb;ab=ab*(1+r)+o.net;o.ab=ab;o.ok=o.net>=o.dep-.5});
+ const bal=cur<0?s.init+pre:M[cur].ab;let gap=0,done=0,okc=0,st=0,net=0;
+ for(let i=0;i<=cur;i++)gap+=M[i].dep-M[i].net;
+ for(let i=0;i<cur;i++){done++;net+=M[i].net;if(M[i].ok)okc++}
+ for(let i=cur-1;i>=0&&M[i].ok;i--)st++;
+ return{M,r,base,auto,dep,cur,bal,gap,done,okc,st,avg:done?net/done:base,final:M[n-1].pb,ex,pre}}
+const proj=(b,c,r,g)=>{let k=0;if(c<=0&&b<g)return null;while(b<g&&k<600){b=b*(1+r)+c;k++}return k};
+const lab=k=>{if(k==null)return'jamais';const d=new Date();d.setMonth(d.getMonth()+k);return MN[d.getMonth()]+' '+d.getFullYear()};
+function chart(c){const n=S.n,X=i=>10+i/Math.max(1,n-1)*300,Y=v=>130-Math.min(1,Math.max(0,v/S.goal))*120;
+ const pl=c.M.map(o=>X(o.i)+','+Y(o.pb)).join(' '),ac=c.M.filter(o=>o.i<=c.cur).map(o=>X(o.i)+','+Y(o.ab)).join(' ');
+ return`<svg viewBox="0 0 320 140"><line x1="10" x2="310" y1="10" y2="10" stroke="var(--g)" stroke-dasharray="4"/><polyline fill="none" stroke="var(--m)" stroke-width="2" stroke-dasharray="3" points="${pl}"/>${ac?`<polyline fill="none" stroke="var(--a)" stroke-width="3" points="${ac}"/>`:''}<text x="12" y="8" font-size="8" fill="var(--g)">Objectif</text></svg><div class="s">━ réel (estimé avec rendement) &nbsp; ┅ plan</div>`}
+function MS(){const big=S.goal>=5e7;return{ms:(big?[.01,.05,.1,.25,.5,.75,1]:[.1,.25,.5,.75,1]).map(x=>x*S.goal),rw:big?['🍽️ resto','🎧 petit plaisir','🎬 sortie','🧳 week-end','🎁 beau cadeau','🏖️ voyage','🏆 la fête !']:['🍽️ resto','🎬 sortie','🧳 week-end','🎁 cadeau','🏆 la fête !']}}
+function rPj(){$('#pj').innerHTML=DB.ps.map(p=>`<button class="chip ${p==S?'on':''}" data-pj="${p.id}">${esc(p.ic)} ${esc(p.name)}</button>`).join('')+'<button class="chip" id="npb">＋ Projet</button>';$('#pn').textContent='→ '+S.ic+' '+S.name}
+function goTab(t){document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x.dataset.tab==t));document.querySelectorAll('.sec').forEach(x=>x.classList.toggle('on',x.id==t));scrollTo(0,0)}
+function setCur(id){DB.cur=id;S=DB.ps.find(p=>p.id==id);save();rSet();render()}
+function rDash(c){
+ const pct=Math.min(100,c.bal/S.goal*100),{ms,rw}=MS();
+ const cm=c.cur<0?`Le plan démarre en ${MN[c.M[0].m]} ${c.M[0].y}. Prépare ton virement automatique.`:c.gap<=0?`En avance de ${F(-c.gap)} sur le plan. Continue ainsi 🔥`:`Il te manque ${F(c.gap)} pour être à jour : vire-les en premier, avant tout le reste.`;
+ const k0=proj(c.bal,c.avg,c.r,S.goal),sc=c.done?Math.round(c.okc/c.done*100):null,day=Math.floor(Date.now()/864e5);
+ const nb=DB.ps.some(p=>p.tx.length)&&(!DB.lb||Date.now()-DB.lb>12096e5)?`<div class="card" style="border-color:var(--g)"><b>⚠️ Pense à sauvegarder tes données</b><div class="s">Si tu perds ou changes de téléphone, elles sont perdues sans sauvegarde.</div><div class="row"><button class="btn p" data-tab="set">Aller à la sauvegarde</button></div></div>`:'';
+ const ov=DB.ps.length>1?(()=>{let tb=0,tg=0;const rows=DB.ps.map(p=>{const q=calc(p);tb+=q.bal;tg+=p.goal;return`<button class="li pr" data-pj="${p.id}"><span>${esc(p.ic)} ${esc(p.name)}<br><span class="s">${F(q.bal)} / ${F(p.goal)}</span></span><b>${Math.min(100,q.bal/p.goal*100).toFixed(0)} %</b></button>`}).join('');return`<div class="card"><h3>Tous mes projets</h3><div class="big">${F(tb)}</div><div class="s">épargnés sur ${F(tg)} d’objectifs</div>${rows}</div>`})():'';
+ $('#home').innerHTML=nb+ov+`<div class="card"><div class="s">${esc(S.ic)} ${esc(S.name)}</div><div class="big">${F(c.bal)}</div><div class="sub">sur ${F(S.goal)} · ${pct.toFixed(1)} %</div><div class="bar"><i style="width:${pct}%"></i></div><p class="coach">${cm}</p></div>
+<div class="kp"><div>Versement de base<b>${F(c.base)}</b></div><div>Soit par jour<b>${F(c.base/30)}</b></div><div>Série de mois tenus<b>${c.st} 🔥</b></div><div>Discipline<b>${sc==null?'—':sc+' %'}</b></div><div>Objectif atteint (rythme réel)<b>${lab(k0)}</b></div><div>Fin du plan<b>${MN[c.M[S.n-1].m]} ${c.M[S.n-1].y}</b></div></div>
+<div class="card"><h3>Trajectoire</h3>${chart(c)}</div>
+<div class="card"><h3>Paliers & récompenses</h3>${ms.map((v,i)=>`<span class="bd ${c.bal>=v?'on':''}">${c.bal>=v?'✓':''} ${K(v)} · ${rw[i]}</span>`).join('')}</div>
+<div class="card"><h3>Et si… ?</h3>${[0,10000,50000].map(x=>{const k=proj(c.bal,c.avg+x,c.r,S.goal);return`<div class="li"><span>${x?'+'+F(x)+' / mois':'Rythme actuel ('+F(c.avg)+')'}</span><b>${lab(k)}${x&&k0!=null&&k!=null&&k0>k?` <span class="ok">(−${k0-k} mois)</span>`:''}</b></div>`}).join('')}<p class="s">1 000 F épargnés aujourd’hui valent environ ${F(1000*Math.pow(1+c.r,Math.max(0,S.n-Math.max(0,c.cur))))} à la fin du plan.</p></div>
+<div class="card"><h3>💡 Astuce du jour</h3>${TIPS[day%TIPS.length]}</div>`}
+const LB={0:'SAUT',.5:'×½',1:'',1.5:'×1,5',2:'×2'};
+function rPlan(c){
+ let g='';c.M.forEach((o,i)=>{if(i%12==0)g+=`<div class="s" style="grid-column:1/-1;margin-top:6px"><b>${o.y}</b></div>`;
+  const past=o.i<c.cur,cl=(o.w==0?'skip ':o.w>1?'x2 ':'')+(past&&o.dep>0?o.ok?'good ':'bad ':'')+(o.i==c.cur?'now':'');
+  g+=`<button class="mc ${cl}" data-k="${o.key}"><b>${MN[o.m]}</b>${LB[S.mult[o.key]??1]??'×'+S.mult[o.key]}<em>${K(o.dep)}</em><span class="s">${o.i<=c.cur?(o.net?K(o.net):'0'):''}</span></button>`});
+ const tot=c.final-S.init-c.dep,w=DB.income>0&&c.base/DB.income>.6;
+ $('#plan').innerHTML=`<div class="card"><h3>Scénarios rapides</h3><div class="row"><button class="chip" data-p="reg">Régulier</button><button class="chip" data-p="sn">Réaliste (sauts mai/sept., doubles mars/déc.)</button><button class="chip" data-p="sp">Sprint (×2 les 6 premiers mois)</button><button class="chip" data-p="pr">Primes (×2 juin & déc.)</button></div>
+<p class="s">Touche un mois pour changer son multiplicateur : normal → saut → ×½ → ×1,5 → ×2. Les montants se recalculent pour toujours atteindre l’objectif.</p></div>
+<div class="card"><div class="two"><div><label>Icône</label><input data-f="ic" maxlength="4" value="${esc(S.ic)}"></div><div><label>Nom du projet</label><input data-f="name" value="${esc(S.name)}"></div><div><label>Objectif (FCFA)</label><input class="num" data-f="goal" type="text" inputmode="numeric" value="${fmtI(S.goal)}"></div><div><label>Début</label><input data-f="start" type="month" value="${S.start}"></div><div><label>Durée (années)</label><input data-f="years" type="number" step="0.5" min="1" max="30" value="${S.n/12}"></div><div><label>Rendement annuel estimé (%)</label><input data-f="rate" type="number" step="0.5" value="${S.rate}"></div><div><label>Hausse annuelle du versement (%)</label><input data-f="step" type="number" step="1" value="${S.step}"></div><div><label>Versement de base imposé</label><input class="num" data-f="manual" type="text" inputmode="numeric" placeholder="auto : ${F(c.auto)}" value="${fmtI(S.manual)}"></div></div></div>
+<div class="card"><h3>Calendrier des versements</h3><div class="grid">${g}</div></div>
+<div class="card"><h3>Résumé</h3><div class="li"><span>Versement de base</span><b>${F(c.base)}</b></div><div class="li"><span>Total versé prévu</span><b>${F(c.dep)}</b></div><div class="li"><span>Intérêts estimés</span><b>${F(tot)}</b></div><div class="li"><span>Capital final prévu</span><b>${F(c.final)}</b></div>${DB.income>0?`<div class="li"><span>Part du revenu</span><b class="${w?'ko':''}">${(c.base/DB.income*100).toFixed(0)} %</b></div><div class="li"><span>Fonds d’urgence conseillé (3–6 mois)</span><b>${K(3*(DB.income-c.base))} – ${K(6*(DB.income-c.base))}</b></div>`:''}${w?'<p class="ko">Ce plan dépasse 60 % de ton revenu : allonge la durée ou ajoute des mois doubles.</p>':''}</div>`}
+function rTx(c){const L=[...S.tx].sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id).slice(0,60);
+ $('#hist').innerHTML=L.length?L.map(t=>`<div class="li"><span>${t.d.slice(5).split('-').reverse().join('/')} · ${t.t=='d'?'➕':t.t=='r'?'➖':'🧾'} ${esc(t.c)}${t.n?' · '+esc(t.n):''}</span><span><b class="${t.t=='d'?'ok':t.t=='r'?'ko':''}">${F(t.a)}</b> <button data-del="${t.id}" aria-label="Supprimer">✕</button></span></div>`).join(''):'<p class="s">Rien pour l’instant. Ajoute ton premier versement !</p>'}
+function rStats(c){
+ const G={},ord=[];c.M.forEach(o=>{const k=P=='m'?o.key:P=='q'?o.y+' T'+((o.m/3|0)+1):o.y,l=P=='m'?MN[o.m]+' '+o.y:k;if(!G[k]){G[k]={l,dep:0,net:0,ex:0,pst:0};ord.push(k)}const g=G[k];g.dep+=o.dep;if(o.i<=c.cur){g.net+=o.net;g.ex+=o.ex;g.pst+=o.dep}});
+ const best=c.M.filter(o=>o.i<=c.cur&&o.dp+o.rt>0).sort((a,b)=>b.net-a.net),T=S.tx.reduce((a,t)=>(a[t.t]+=t.a,a),{d:0,r:0,x:0}),cats=Object.entries(c.ex).sort((a,b)=>b[1]-a[1]);
+ const rate=DB.income>0&&c.cur>=0?(T.d/(DB.income*(c.cur+1))*100).toFixed(0)+' %':'—';
+ $('#st').innerHTML=`<div class="card"><div class="row"><button class="chip ${P=='m'?'on':''}" data-per="m">Mois</button><button class="chip ${P=='q'?'on':''}" data-per="q">Trimestres</button><button class="chip ${P=='y'?'on':''}" data-per="y">Années</button></div>
+${ord.map(k=>{const g=G[k],p=g.pst?Math.min(100,g.net/g.pst*100):0;return`<div class="tr"><b>${g.l}</b><span>Plan ${K(g.dep)}</span><span class="${g.pst&&g.net>=g.pst?'ok':g.pst?'ko':''}">${g.pst?'Réel '+K(g.net)+' ('+Math.round(g.net/g.pst*100)+' %)':'à venir'}</span><div class="pb"><i style="width:${Math.max(0,p)}%"></i></div></div>`}).join('')}</div>
+<div class="kp"><div>Total épargné<b class="ok">${F(T.d)}</b></div><div>Total retiré<b class="ko">${F(T.r)}</b></div><div>Dépenses saisies<b>${F(T.x)}</b></div><div>Taux d’épargne<b>${rate}</b></div><div>Meilleur mois<b>${best[0]?MN[best[0].m]+' · '+K(best[0].net):'—'}</b></div><div>Mois tenus<b>${c.okc}/${c.done}</b></div></div>
+<div class="card"><h3>Dépenses par catégorie</h3>${cats.length?cats.map(([k,v])=>`<div class="li"><span>${esc(k)}</span><b>${F(v)}</b></div>`).join(''):'<p class="s">Saisis tes dépenses pour voir où part ton argent.</p>'}</div>`}
+function rSet0(){$('#set').innerHTML=`<div id="sec"></div><div class="card"><h3>Mes chiffres</h3><div class="two"><div><label>Revenu mensuel net</label><input class="num" data-f="income" type="text" inputmode="numeric" value="${fmtI(DB.income)}"></div><div><label>Épargne déjà constituée (ce projet)</label><input class="num" data-f="init" type="text" inputmode="numeric" value="${fmtI(S.init)}"></div></div></div>
+${DB.ps.length>1?`<div class="card"><h3>Projet en cours</h3><button class="btn" id="dp">🗑 Supprimer « ${esc(S.name)} »</button></div>`:''}<div class="card"><h3>Sauvegarde &amp; changement de téléphone</h3><p class="s">Dernière sauvegarde : ${DB.lb?new Date(DB.lb).toLocaleDateString('fr-FR'):'jamais'}</p><div class="row"><button class="btn p" id="sh">📤 Sauvegarder / partager</button></div><label>Restaurer depuis un fichier</label><input id="fi" type="file" accept=".json,application/json,text/plain"><label>… ou coller le texte de la sauvegarde</label><textarea id="bk" rows="3"></textarea><div class="row"><button class="btn" id="im">Restaurer</button><button class="btn" id="ex">Copier</button><button class="btn" id="rs">Tout effacer</button></div></div>`}
+const SK='epargne_sec',te=new TextEncoder(),hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+let SEC=(()=>{try{return JSON.parse(localStorage.getItem(SK)||'null')}catch(e){return null}})(),buf='',busy=0,hid=0;
+const sSec=()=>{try{SEC?localStorage.setItem(SK,JSON.stringify(SEC)):localStorage.removeItem(SK)}catch(e){}},NB=()=>window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.NativeBiometric,okPin=v=>/^\d{4,6}$/.test(v);
+async function hp(pin,salt){try{const k=await crypto.subtle.importKey('raw',te.encode(pin),'PBKDF2',false,['deriveBits']);return hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:te.encode(salt),iterations:150000},k,256))}catch(e){let x=5381;const s=salt+pin;for(let i=0;i<s.length;i++)x=(x*33^s.charCodeAt(i))>>>0;for(let i=0;i<5000;i++)x=(x*33^i)>>>0;return'x'+x}}
+const chk=async v=>!!SEC&&await hp(v,SEC.salt)===SEC.hash,salt=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
+function dots(){const n=SEC?SEC.len:4;$('#dots').innerHTML=[...Array(n)].map((_,i)=>`<i class="${i<buf.length?'f':''}"></i>`).join('')}
+function lock(){if(!SEC)return;buf='';document.documentElement.classList.add('lk');$('#lmsg').textContent='';$('#lbio').hidden=!(SEC.bio&&NB());dots();if(SEC.bio&&NB())setTimeout(tryBio,300)}
+function unlock(){buf='';document.documentElement.classList.remove('lk')}
+async function bio(){const n=NB();if(!n)return false;busy=Date.now()+9e4;try{await n.verifyIdentity({reason:'Déverrouiller l’application',title:'Objectif : épargne à ton rythme',subtitle:'Empreinte digitale',negativeButtonText:'Utiliser le PIN',useFallback:false,maxAttempts:3});busy=Date.now()+3e3;return true}catch(e){busy=Date.now()+3e3;return false}}
+async function tryBio(){if(SEC&&SEC.bio&&await bio())unlock()}
+async function key(d){if(!SEC)return;const w=SEC.until-Date.now();if(w>0){$('#lmsg').textContent='Trop d’essais : réessaie dans '+Math.ceil(w/1000)+' s';return}
+ if(d=='b')buf=buf.slice(0,-1);else if(buf.length<SEC.len)buf+=d;dots();
+ if(buf.length==SEC.len){if(await chk(buf)){SEC.fails=0;sSec();unlock()}else{SEC.fails++;if(SEC.fails%5==0)SEC.until=Date.now()+Math.min(300,30*SEC.fails/5)*1e3;sSec();buf='';dots();$('#lmsg').textContent=SEC.fails%5==0?'Trop d’essais : patiente un moment.':'Code incorrect ('+SEC.fails%5+'/5)'}}}
+function rSec(){const el=$('#sec');if(!el)return;const pw=(id,l)=>`<label>${l}</label><input id="${id}" type="password" inputmode="numeric" maxlength="6" autocomplete="off">`;
+ el.innerHTML=!SEC?`<div class="card"><h3>🔒 Sécurité</h3><p class="s">Protège l’accès à tes chiffres avec un PIN, puis ajoute l’empreinte digitale dans l’appli Android.</p>${pw('p1','Choisis un PIN (4 à 6 chiffres)')}${pw('p2','Confirme le PIN')}<div class="row"><button class="btn p" id="pset">Activer le PIN</button></div><p class="s">Aucune récupération possible si tu l’oublies : garde une sauvegarde à jour.</p></div>`
+ :`<div class="card"><h3>🔒 Sécurité <span class="ok">PIN actif</span></h3><div class="li"><span>Empreinte digitale</span><button class="chip ${SEC.bio?'on':''}" id="pbio">${SEC.bio?'Activée':'Activer'}</button></div>${NB()?'':'<p class="s">L’empreinte est disponible dans l’application Android.</p>'}<label>Verrouiller après être sorti de l’appli</label><select id="pdl">${[[0,'Immédiatement'],[1,'Après 1 minute'],[5,'Après 5 minutes'],[15,'Après 15 minutes']].map(([v,l])=>`<option value="${v}" ${SEC.delay==v?'selected':''}>${l}</option>`).join('')}</select>${pw('pc','PIN actuel (pour changer ou désactiver)')}${pw('pn','Nouveau PIN')}<div class="row"><button class="btn" id="pchg">Changer le PIN</button><button class="btn" id="poff">Désactiver</button></div><div class="row"><button class="btn p" id="plk">🔒 Verrouiller maintenant</button></div></div>`}
+function rSet(){rSet0();rSec()}
+async function pset(){const a=$('#p1').value,b=$('#p2').value;if(!okPin(a))return toast('Le PIN doit avoir 4 à 6 chiffres');if(a!=b)return toast('Les deux PIN sont différents');const s=salt();SEC={salt:s,hash:await hp(a,s),len:a.length,bio:false,delay:1,fails:0,until:0};sSec();rSec();toast('PIN activé ✔')}
+async function pchg(){if(!await chk($('#pc').value))return toast('PIN actuel incorrect');const n=$('#pn').value;if(!okPin(n))return toast('Le nouveau PIN doit avoir 4 à 6 chiffres');const s=salt();Object.assign(SEC,{salt:s,hash:await hp(n,s),len:n.length,fails:0,until:0});sSec();rSec();toast('PIN modifié ✔')}
+async function poff(){if(!await chk($('#pc').value))return toast('PIN actuel incorrect');SEC=null;sSec();rSec();toast('PIN désactivé')}
+async function pbio(){if(SEC.bio){SEC.bio=false;sSec();return rSec()}const n=NB();if(!n)return toast('Disponible dans l’application Android');try{const a=await n.isAvailable();if(!a.isAvailable)return toast('Aucune empreinte enregistrée sur ce téléphone')}catch(e){return toast('Empreinte indisponible')}if(await bio()){SEC.bio=true;sSec();rSec();toast('Empreinte activée ✔')}else toast('Vérification annulée')}
+document.addEventListener('visibilitychange',()=>{if(!SEC)return;if(document.hidden)hid=Date.now();else if(hid&&Date.now()>busy&&!document.documentElement.classList.contains('lk')&&Date.now()-hid>=SEC.delay*6e4)lock()});
+document.addEventListener('click',e=>{if(e.target.id=='fi')busy=Date.now()+12e4});
+function render(){C=calc();rPj();rDash(C);rPlan(C);rTx(C);rStats(C)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2600)}
+function boom(){for(let i=0;i<18;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','💰','✨','🔥','🌟'][i%5];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2400)}}
+function cats(){$('#ct').innerHTML=CAT[TT].map(c=>`<option>${c}</option>`).join('')}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const D=b.dataset;
+ if(D.tab)goTab(D.tab)
+ else if(D.t){TT=D.t;document.querySelectorAll('#tt button').forEach(x=>x.classList.toggle('on',x==b));cats()}
+ else if(D.q){$('#am').value=fmtI(num($('#am').value)+ +D.q)}
+ else if(D.k){const L=[1,0,.5,1.5,2],i=L.indexOf(S.mult[D.k]??1);S.mult[D.k]=L[(i+1)%L.length];S.manual=null;save();render()}
+ else if(D.p){S.mult={};S.manual=null;C.M.forEach(o=>{const m=o.m+1;if(D.p=='sn'){if(m==5||m==9)S.mult[o.key]=0;if(m==3||m==12)S.mult[o.key]=2}if(D.p=='sp'&&o.i<6)S.mult[o.key]=2;if(D.p=='pr'&&(m==6||m==12))S.mult[o.key]=2});save();render();toast('Scénario appliqué ✔')}
+ else if(D.pj){setCur(D.pj)}
+ else if(b.id=='npb'){$('#np').hidden=!$('#np').hidden}
+ else if(D.tpl){const T=TPL[D.tpl],d=new Date(),p=mkP({ic:T[0],name:T[1],goal:T[2],n:T[3],start:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')});DB.ps.push(p);$('#np').hidden=true;setCur(p.id);goTab('plan');toast('Projet créé : ajuste l’objectif et la durée')}
+ else if(b.id=='dp'){if(b.dataset.s){DB.ps=DB.ps.filter(p=>p!=S);setCur(DB.ps[0].id);toast('Projet supprimé')}else{b.dataset.s=1;b.textContent='Confirmer la suppression ?'}}
+ else if(D.d){key(D.d)}
+ else if(b.id=='lbio'){tryBio()}
+ else if(b.id=='lfg'){if(b.dataset.s){try{localStorage.clear()}catch(x){}SEC=null;location.reload()}else{b.dataset.s=1;b.textContent='Effacer les données et réinitialiser ?';$('#lmsg').textContent='Sans PIN, il faut effacer les données de l’appli. Tu pourras restaurer ta sauvegarde.'}}
+ else if(b.id=='pset'){pset()}else if(b.id=='pchg'){pchg()}else if(b.id=='poff'){poff()}else if(b.id=='pbio'){pbio()}else if(b.id=='plk'){lock()}
+ else if(D.per){P=D.per;render()}
+ else if(D.del){S.tx=S.tx.filter(t=>t.id!=D.del);save();render()}
+ else if(b.id=='add'){const a=num($('#am').value),d=$('#dt').value;if(!(a>0)||!d)return toast('Indique un montant et une date');const before=C.bal;S.tx.push({id:Date.now(),d,t:TT,a,c:$('#ct').value,n:$('#nt').value});save();render();$('#am').value='';$('#nt').value='';
+  if(TT=='d'){boom();const ms=MS().ms.filter(v=>before<v&&C.bal>=v);toast(ms.length?'🏆 Palier '+K(ms[ms.length-1])+' franchi !':'Bravo, +'+F(a)+' mis de côté 💪')}else toast(TT=='r'?'Retrait noté : il décale ta date finale.':'Dépense enregistrée')}
+ else if(b.id=='th'){const r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark'}
+ else if(b.id=='sh'){backup()}
+ else if(b.id=='ex'){$('#bk').value=JSON.stringify(DB);$('#bk').select()}
+ else if(b.id=='im'){try{const o=JSON.parse($('#bk').value);if(typeof o.goal!='number'&&!Array.isArray(o.ps))throw 0;DB=norm(o);S=DB.ps.find(p=>p.id==DB.cur);save();render();rSet();toast('Données restaurées')}catch(x){toast('Sauvegarde invalide')}}
+ else if(b.id=='rs'){if(b.dataset.s){DB=norm(null);S=DB.ps.find(p=>p.id==DB.cur);save();render();rSet();toast('Tout est effacé')}else{b.dataset.s=1;b.textContent='Confirmer l’effacement ?'}}});
+document.addEventListener('input',e=>{const t=e.target;if(!t.classList||!t.classList.contains('num'))return;const p=t.selectionStart||0,d=t.value.slice(0,p).replace(/\D/g,'').length;t.value=fmtI(num(t.value));let k=0,i=0;for(;i<t.value.length&&k<d;i++)if(/\d/.test(t.value[i]))k++;try{t.setSelectionRange(i,i)}catch(x){}});
+document.addEventListener('change',e=>{const f=e.target.dataset.f;if(!f)return;let v=e.target.value;if(e.target.classList.contains('num'))v=num(v);if(f=='start'){if(!v)return;S.start=v}else if(f=='years')S.n=Math.max(12,Math.round(+v*12));else if(f=='manual')S.manual=+v>0?+v:null;else if(f=='name'||f=='ic')S[f]=v;else if(f=='income')DB.income=v;else S[f]=+v||0;save();render()});
+async function backup(){busy=Date.now()+18e4;try{return await backup0()}finally{busy=Date.now()+3e3}}
+async function backup0(){const j=JSON.stringify(DB),nm='epargne-100m-'+new Date().toISOString().slice(0,10)+'.json',Q=window.Capacitor&&Capacitor.Plugins||{};
+ try{if(Q.Filesystem&&Q.Share){await Q.Filesystem.writeFile({path:nm,data:j,directory:'CACHE',encoding:'utf8'});const u=await Q.Filesystem.getUri({path:nm,directory:'CACHE'});await Q.Share.share({title:nm,url:u.uri,dialogTitle:'Enregistrer la sauvegarde (Drive, WhatsApp, e-mail…)'})}
+ else if(navigator.share)await navigator.share({title:nm,text:j});else{$('#bk').value=j;$('#bk').select();try{await navigator.clipboard.writeText(j)}catch(x){}toast('Texte copié : colle-le dans une note ou un e-mail')}
+ DB.lb=Date.now();save();rSet();render();toast('Sauvegarde créée ✔')}catch(x){$('#bk').value=j;toast('Partage annulé : le texte est affiché ci-dessous')}}
+document.addEventListener('change',e=>{if(e.target.id=='pdl'&&SEC){SEC.delay=+e.target.value;sSec();return}if(e.target.id!='fi'||!e.target.files[0])return;const r=new FileReader();r.onload=()=>{$('#bk').value=r.result;$('#im').click()};r.readAsText(e.target.files[0])});
+$('#dt').value=new Date().toISOString().slice(0,10);$('#tpl').innerHTML=Object.entries(TPL).map(([k,v])=>`<button class="chip" data-tpl="${k}">${v[0]} ${v[1]}</button>`).join('');$('#pad').innerHTML=[1,2,3,4,5,6,7,8,9,'','0','b'].map(k=>k===''?'<span></span>':`<button class="pk" data-d="${k}">${k=='b'?'⌫':k}</button>`).join('');cats();rSet();render();lock();
+</script></body></html>
